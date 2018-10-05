@@ -105,3 +105,40 @@ void get_address_with_checksum(const unsigned char *address_bytes,
     os_memcpy(full_address + NUM_HASH_TRYTES,
               full_checksum + NUM_HASH_TRYTES - CHECKSUM_CHARS, CHECKSUM_CHARS);
 }
+
+void iota_get_seed(uint8_t derived_seed[64], char seed[81]) {
+    // generate seed from mnemonic
+    SHA3_CTX ctx;
+
+    kerl_initialize(&ctx);
+
+    // Absorb 4 times using sliding window:
+    // Divide 64 byte trezor-seed in 4 sections of 16 bytes.
+    // 1: [123.] first 48 bytes
+    // 2: [.123] last 48 bytes
+    // 3: [3.12] last 32 bytes + first 16 bytes
+    // 4: [23.1] last 16 bytes + first 32 bytes
+    unsigned char bytes_in[48], seed_bytes[48];
+
+    // Step 1.
+    memcpy(&bytes_in[0], derived_seed, 48);
+    kerl_absorb_bytes(&ctx, bytes_in, 48);
+
+    // Step 2.
+    memcpy(&bytes_in[0], derived_seed+16, 48);
+    kerl_absorb_bytes(&ctx, bytes_in, 48);
+
+    // Step 3.
+    memcpy(&bytes_in[0], derived_seed+32, 32);
+    memcpy(&bytes_in[32], derived_seed, 16);
+    kerl_absorb_bytes(&ctx, bytes_in, 48);
+
+    // Step 4.
+    memcpy(&bytes_in[0], derived_seed+48, 16);
+    memcpy(&bytes_in[16], derived_seed, 32);
+    kerl_absorb_bytes(&ctx, bytes_in, 48);
+
+    // Squeeze out the seed
+    kerl_squeeze_final_chunk(&ctx, seed_bytes);
+    bytes_to_chars(seed_bytes, seed, 48);
+}

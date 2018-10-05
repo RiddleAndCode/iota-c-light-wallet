@@ -3,7 +3,7 @@
 #include "iota/common.h"
 
 #define PAD_CHAR '9'
-
+#include "strl.h"
 bool validate_chars(const char *chars, unsigned int num_chars)
 {
     const size_t len = strnlen(chars, num_chars);
@@ -16,6 +16,7 @@ bool validate_chars(const char *chars, unsigned int num_chars)
 
     return true;
 }
+
 
 void rpad_chars(char *destination, const char *source, unsigned int num_chars)
 {

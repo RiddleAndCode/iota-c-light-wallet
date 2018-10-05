@@ -9,6 +9,9 @@
 #include <stdint.h>
 #include "iota_types.h"
 
+
+void ascii_to_trytes(uint8_t* bytes, uint32_t len, uint8_t* trytes, uint32_t trytes_size);
+
 /** @brief Converts a balanced ternary number in base-27 encoding into its
  *         trit representation.
  *  @param chars base-27 encoded ternary number

@@ -13,4 +13,8 @@ void get_public_addr(const unsigned char *seed_bytes, uint32_t idx,
 void get_address_with_checksum(const unsigned char *address_bytes,
                                char *full_address);
 
+/*
+ * From mnemonic phrase seed to IOTA seed bytes.
+*/
+void iota_get_seed(uint8_t derived_seed[64], char seed_bytes[81]);
 #endif // ADDRESSES_H

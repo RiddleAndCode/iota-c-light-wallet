@@ -1,5 +1,5 @@
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef IOTA_COMMON_H
+#define IOTA_COMMON_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,18 +9,19 @@
 /* ----------------------------------------------------------------------- */
 /* -                      DEFINES AND MACROS                             - */
 /* ----------------------------------------------------------------------- */
-
+#define typeof __typeof__
 // no catching supported, just abort while printing the code name to stderr
 #define THROW(x) \
         ({ fprintf(stderr, "EXCEPTION: " #x "\n"); \
            abort(); })
 
 #define UNUSED(x) (void)(x)
-
+#ifndef MIN
 #define MIN(a,b) \
         ({ __typeof__ (a)_a = (a); \
            __typeof__ (b)_b = (b); \
            _a < _b ? _a : _b; })
+#endif
 #define MAX(a,b) \
         ({ __typeof__ (a)_a = (a); \
            __typeof__ (b)_b = (b); \
@@ -96,4 +97,4 @@ static inline void cx_hash(SHA3_CTX* hash, int mode, const unsigned char *in,
                 (_x >= (min) && _x <= (max));                                  \
         })
 
-#endif // COMMON_H
+#endif // IOTA_COMMON_H

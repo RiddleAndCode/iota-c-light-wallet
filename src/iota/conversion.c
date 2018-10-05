@@ -364,9 +364,21 @@ static void bytes_to_bigint(const unsigned char *bytes, uint32_t *bigint)
     }
 }
 
+void ascii_to_trytes(uint8_t* bytes, uint32_t len, uint8_t* trytes, uint32_t trytes_size) {
+
+    char * TRYTE_VALUES = "9ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    for (uint32_t i = 0, j = 0; i < len && j + 1 < trytes_size; i++, j++) {
+        uint32_t firstValue = bytes[i] % 27;
+        uint32_t secondValue = (bytes[i] - firstValue) / 27;
+        trytes[j++] = TRYTE_VALUES[firstValue];
+        trytes[j] = TRYTE_VALUES[secondValue];
+    }
+}
+
 void trits_to_bytes(const trit_t *trits, unsigned char *bytes)
 {
-    uint32_t bigint[12];
+    uint32_t bigint[13];
     trits_to_bigint(trits, bigint);
     bigint_to_bytes(bigint, bytes);
 }
