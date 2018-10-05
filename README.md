@@ -59,6 +59,11 @@ prepare_transfers(seed, 2, output_txs, 1, input_txs, 1, transaction_chars);
 
 ```
 
+### Build messages (0 value transactions)
 
+```
+void build_signed_message(char seed[81], uint8_t index, char tag[27], uint32_t timestamp, char* message, uint16_t message_size, char bundle_hash[],  char serialized_tx[])
+
+```
 
 

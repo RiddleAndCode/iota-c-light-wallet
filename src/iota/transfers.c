@@ -243,11 +243,7 @@ bool iota_sign_transaction(char seed[81], TX_DETAILS *tx, char bundle_hash[],  c
   return true;
 }
 
-/*
- * Builds a 0 valued bundle (with input tx) to send a ASCII message (found on the output, tx index 0) from itself to itself.
- *
- * Make sure char[] are base27encoded.
- */
+
 void build_signed_message(char seed[81], uint8_t index, char tag[27], uint32_t timestamp, char* message, uint16_t message_size, char bundle_hash[],  char serialized_tx[]) {
   if(message_size < 2187) {
     

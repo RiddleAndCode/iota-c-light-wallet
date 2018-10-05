@@ -33,6 +33,15 @@ void prepare_transfers(char *seed, uint8_t security, TX_OUTPUT *outputs,
                        char transaction_chars[][2673]);
 
 bool iota_sign_transaction(char seed[81], TX_DETAILS *tx, char bundle_hash[],  char serialized_tx[]);
+
+/*
+ * Builds a 0 valued bundle (with input tx) to send a ASCII message (found on the output, tx index 0) from itself to itself.
+ *
+ * Make sure char[] are base27encoded.
+ * Outputs:
+ *   - bundle_hash
+ *   - serialized_tx
+ */
 void build_signed_message(char seed[81], uint8_t index, char tag[27], uint32_t timestamp, char* message, uint16_t message_size, char bundle_hash[],  char serialized_tx[]);
 
 #endif //TRANSFERS_H
