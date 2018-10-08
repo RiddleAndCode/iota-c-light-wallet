@@ -45,13 +45,6 @@ static char *int64_to_chars(int64_t value, char *chars, unsigned int num_trytes)
   return chars + num_trytes;
 }
 
-static void get_address(const unsigned char *seed_bytes, uint32_t idx,
-                        unsigned int security, char *address) {
-  unsigned char bytes[48];
-  get_public_addr(seed_bytes, idx, security, bytes);
-  bytes_to_chars(bytes, address, 48);
-}
-
 static char *char_copy(char *destination, const char *source, unsigned int len) {
   assert(strnlen(source, len) == len);
   memcpy(destination, source, len);

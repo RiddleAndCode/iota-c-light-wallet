@@ -142,3 +142,10 @@ void iota_get_seed(uint8_t derived_seed[64], char seed[81]) {
     kerl_squeeze_final_chunk(&ctx, seed_bytes);
     bytes_to_chars(seed_bytes, seed, 48);
 }
+
+void get_address(const unsigned char *seed_bytes, uint32_t idx,
+                        unsigned int security, char *address) {
+  unsigned char bytes[48];
+  get_public_addr(seed_bytes, idx, security, bytes);
+  bytes_to_chars(bytes, address, 48);
+}

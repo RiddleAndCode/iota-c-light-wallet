@@ -6,6 +6,9 @@
 void get_public_addr(const unsigned char *seed_bytes, uint32_t idx,
                      unsigned int security, unsigned char *address_bytes);
 
+void get_address(const unsigned char *seed_bytes, uint32_t idx,
+                        unsigned int security, char *address);
+
 /** @brief Computes the full address string in base-27 encoding.
  *  The full address consists of the actual address (81 chars) plus 9 chars of
  *  checksum.
