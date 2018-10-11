@@ -26,7 +26,7 @@ set(SOURCE_FILES
         src/keccak/sha3.c
         src/keccak/sha3.h
         src/aux.c
-	src/aux.h
+	src/_aux.h
 	src/main.c
         src/main.h)
 

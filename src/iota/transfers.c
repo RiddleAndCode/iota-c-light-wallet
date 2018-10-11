@@ -7,7 +7,7 @@
 #include "addresses.h"
 #include "bundle.h"
 #include "signing.h"
-#include "../aux.h"
+#include "../_aux.h"
 
 #define ZERO_HASH                                                              \
     "999999999999999999999999999999999999999999999999999999999999999999999999" \

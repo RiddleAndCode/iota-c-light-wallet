@@ -1,4 +1,4 @@
-#include "aux.h"
+#include "_aux.h"
 #include <string.h>
 #include "iota/common.h"
 

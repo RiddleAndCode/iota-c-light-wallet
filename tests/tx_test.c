@@ -3,7 +3,7 @@
 #include "transaction_file.h"
 #include "api_tests.h"
 #include "api.h"
-#include "aux.h"
+#include "_aux.h"
 #include "iota/bundle.h"
 #include "iota/conversion.h"
 
