@@ -1,6 +1,6 @@
 #include "_aux.h"
 #include <string.h>
-#include "iota/common.h"
+#include "common.h"
 
 #define PAD_CHAR '9'
 
