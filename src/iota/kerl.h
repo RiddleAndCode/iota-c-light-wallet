@@ -7,6 +7,11 @@
 
 #include "common.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /** @brief Initializes the context for Kerl.
  *  @param sha3 the SHA context used.
  */
@@ -62,5 +67,10 @@ void kerl_squeeze_bytes(cx_sha3_t *sha3, unsigned char* bytes, unsigned int len)
  *  @param bytes result byte array
  */
 void kerl_state_squeeze_chunk(cx_sha3_t *sha3, unsigned char *state_bytes, unsigned char *bytes);
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif // KERL_H

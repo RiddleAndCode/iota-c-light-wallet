@@ -9,6 +9,10 @@
 #include <stdint.h>
 #include "iota_types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 void ascii_to_trytes(uint8_t* bytes, uint32_t len, uint8_t* trytes, uint32_t trytes_size);
 
@@ -112,5 +116,10 @@ void bytes_increment_trit_area_81(unsigned char *bytes);
  *  @param summand unsigned number to add
  */
 void bytes_add_u32_mem(unsigned char *bytes, uint32_t summand);
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif // CONVERSION_H

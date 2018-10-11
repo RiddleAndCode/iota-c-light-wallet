@@ -6,6 +6,11 @@
 #include <string.h>
 #include "../keccak/sha3.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /* ----------------------------------------------------------------------- */
 /* -                      DEFINES AND MACROS                             - */
 /* ----------------------------------------------------------------------- */
@@ -96,5 +101,10 @@ static inline void cx_hash(SHA3_CTX* hash, int mode, const unsigned char *in,
                 typeof(x)_x = (x);                                             \
                 (_x >= (min) && _x <= (max));                                  \
         })
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif // IOTA_COMMON_H

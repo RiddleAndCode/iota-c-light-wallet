@@ -4,6 +4,10 @@
 #include "stdbool.h"
 #include "iota_types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // the number of chunks in one signature fragment
 // this can be changed to any multiple of 3 up to 27
 // prefer larger number when possible
@@ -49,5 +53,10 @@ static inline bool signing_has_next_fragment(const SIGNING_CTX *ctx)
 {
         return ctx->fragment_index <= ctx->last_fragment;
 }
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif // SIGNING_H

@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include "iota_types.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 #define MAX_BUNDLE_INDEX_SZ 8
 
@@ -113,5 +117,10 @@ static inline bool bundle_has_open_txs(const BUNDLE_CTX *ctx)
 {
         return ctx->current_index <= ctx->last_index;
 }
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif // BUNDLE_H
