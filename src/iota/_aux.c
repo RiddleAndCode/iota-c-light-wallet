@@ -3,7 +3,14 @@
 #include "iota/common.h"
 
 #define PAD_CHAR '9'
-#include "strl.h"
+
+size_t strnlen(const char *s, size_t max_len)
+{
+    size_t i = 0;
+    for(; (i < max_len) && s[i]; ++i);
+    return i;
+}
+
 bool validate_chars(const char *chars, unsigned int num_chars)
 {
     const size_t len = strnlen(chars, num_chars);
