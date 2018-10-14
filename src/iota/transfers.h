@@ -46,7 +46,8 @@ bool iota_sign_transaction(char seed[81], TX_DETAILS *tx, char bundle_hash[],  c
  *   - bundle_hash
  *   - serialized_tx
  */
-void build_signed_message(char seed[81], uint8_t index, char tag[27], uint32_t timestamp, char* message, uint16_t message_size, char bundle_hash[],  char serialized_tx[]);
+void build_signed_message(char seed[81], uint8_t index, char tag[27], uint32_t timestamp, char* message, 
+uint16_t message_size, char bundle_hash[],  char serialized_tx[][2673]);
 
 #ifdef __cplusplus
 }

@@ -171,7 +171,7 @@ void prepare_transfers(char *seed, uint8_t security, TX_OUTPUT *outputs,
   uint32_t tag_increment = bundle_finalize(&bundle_ctx);
 
   // increment the tag in the first transaction object
-  increment_obsolete_tag(tag_increment, &txs[0]);
+  // increment_obsolete_tag(tag_increment, &txs[0]);
 
   // set the bundle hash in all transaction objects
   set_bundle_hash(&bundle_ctx, txs, num_txs);
@@ -236,14 +236,16 @@ bool iota_sign_transaction(char seed[81], TX_DETAILS *tx, char bundle_hash[],  c
   return true;
 }
 
-
-void build_signed_message(char seed[81], uint8_t index, char tag[27], uint32_t timestamp, char* message, uint16_t message_size, char bundle_hash[],  char serialized_tx[]) {
+void build_signed_message(char seed[81], uint8_t index, 
+    char tag[27], uint32_t timestamp, char* message, uint16_t message_size, 
+    char bundle_hash[],  char serialized_tx[][2673]) {
   if(message_size < 2187) {
     
     unsigned char seed_bytes[48];
     chars_to_bytes(seed, seed_bytes, 81);
 
     TX_OUTPUT out[1];
+    memset((uint8_t*)out[0].message, '9' , 2187);
     ascii_to_trytes((uint8_t*)message, message_size, (uint8_t*)out[0].message, 2187);
     get_address(seed_bytes, index, 2, out->address);
     memcpy(out->tag, tag, 27);
@@ -254,8 +256,6 @@ void build_signed_message(char seed[81], uint8_t index, char tag[27], uint32_t t
     inp[0].key_index = index;
 
 
-    char txs[3][2673]= {0};
-    prepare_transfers(seed, 2, out, 1, inp, 1, timestamp, (char*)bundle_hash, txs);
-    memcpy(serialized_tx, txs, 3*2673);
+   prepare_transfers(seed, 2, out, 1, inp, 1, timestamp, (char*)bundle_hash, serialized_tx);
   }
 }
