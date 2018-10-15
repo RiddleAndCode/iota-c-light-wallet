@@ -86,7 +86,7 @@ static void increment_obsolete_tag(unsigned int tag_increment, TX_OBJECT *tx) {
 
   // TODO: do we need to increment both? Probably only obsoleteTag...
   memcpy(tx->obsoleteTag, extended_tag, 27);
-  memcpy(tx->tag, extended_tag, 27);
+  //memcpy(tx->tag, extended_tag, 27);
 }
 
 static void set_bundle_hash(const BUNDLE_CTX *bundle_ctx, TX_OBJECT *txs,
@@ -171,7 +171,7 @@ void prepare_transfers(char *seed, uint8_t security, TX_OUTPUT *outputs,
   uint32_t tag_increment = bundle_finalize(&bundle_ctx);
 
   // increment the tag in the first transaction object
-  // increment_obsolete_tag(tag_increment, &txs[0]);
+  increment_obsolete_tag(tag_increment, &txs[0]);
 
   // set the bundle hash in all transaction objects
   set_bundle_hash(&bundle_ctx, txs, num_txs);
