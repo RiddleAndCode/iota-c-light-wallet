@@ -27,7 +27,7 @@ bool validate_chars(const char *chars, unsigned int num_chars)
 
 void rpad_chars(char *destination, const char *source, unsigned int num_chars)
 {
-    const size_t len = strnlen_(source, num_chars);
+    const size_t len = _strnlen(source, num_chars);
     os_memcpy(destination, source, len);
     os_memset(destination + len, PAD_CHAR, num_chars - len);
 }
