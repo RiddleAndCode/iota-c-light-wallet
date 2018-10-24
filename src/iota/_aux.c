@@ -4,7 +4,7 @@
 
 #define PAD_CHAR '9'
 
-size_t strnlen(const char *s, size_t max_len)
+size_t _strnlen(const char *s, size_t max_len)
 {
     size_t i = 0;
     for(; (i < max_len) && s[i]; ++i);
@@ -13,7 +13,7 @@ size_t strnlen(const char *s, size_t max_len)
 
 bool validate_chars(const char *chars, unsigned int num_chars)
 {
-    const size_t len = strnlen(chars, num_chars);
+    const size_t len = _strnlen(chars, num_chars);
     for (unsigned int i = 0; i < len; i++) {
         const char c = chars[i];
         if (c != '9' && (c < 'A' || c > 'Z')) {
@@ -27,7 +27,7 @@ bool validate_chars(const char *chars, unsigned int num_chars)
 
 void rpad_chars(char *destination, const char *source, unsigned int num_chars)
 {
-    const size_t len = strnlen(source, num_chars);
+    const size_t len = strnlen_(source, num_chars);
     os_memcpy(destination, source, len);
     os_memset(destination + len, PAD_CHAR, num_chars - len);
 }
