@@ -233,9 +233,7 @@ bool iota_sign_transaction(char seed[81], TX_DETAILS *tx, char bundle_hash[],  c
   inp[0].balance = tx->balance;
   inp[0].key_index = tx->input_address_index;
 
-  char re[4][2673]= {0};
-  prepare_transfers(seed, 2, out, 2, inp, 1, tx->timestamp, bundle_hash, re);
-  memcpy(serialized_tx, re, 4*2673);
+  prepare_transfers(seed, 2, out, 2, inp, 1, tx->timestamp, bundle_hash, (char (*)[2673])serialized_tx);
 
   return true;
 }
